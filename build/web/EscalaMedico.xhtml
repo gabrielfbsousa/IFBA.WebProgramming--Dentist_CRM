@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+            <p:growl id="msgs" showDetail="true" />
+
+            <p:panel>
+
+                <p:tabMenu id="tabMenu">
+                    <p:menuitem action="AgendarConsulta" icon="ui-icon-arrowthick-1-w"/>
+                    <p:menuitem value="Página inicial do administrador" action="InicialAdministrador" icon="ui-icon-gear"/>
+                    <p:menuitem value="Menu do Paciente" action="PacienteMenu" icon="ui-icon-person"/>
+                    <p:menuitem value="Menu do Medico" action="MedicoMenu" icon="ui-icon-plusthick"/>
+                    <p:menuitem value="Menu do Usuário" action="UsuarioMenu" icon="ui-icon-clipboard"/>
+                    <p:menuitem value="Logout" action="index" style="margin-right:10px" icon="ui-icon-power"/>
+                </p:tabMenu>     
+
+                <br/>
+                <p:breadCrumb>
+                    <p:menuitem value="Administrador" />
+                    <p:menuitem value="Menu do Paciente" />      
+                    <p:menuitem value="Buscar Paciente via CPF" />  
+                    <p:menuitem value="Ações do Paciente" />  
+                    <p:menuitem value="Agendamento de Consultas" />  
+                    <p:menuitem value="Selecionar uma data" />  
+                </p:breadCrumb>
+                <br/>  
+
+                <center>
+                    <h:outputText value="Selecione a data desejada, e confirme-a: "/>
+                    <h:panelGrid columns="2" cellpadding="5">                        
+                        <p:calendar id="inline" value="#{calendarioBean.date1}" mode="inline" />
+                    </h:panelGrid>
+
+                    <p:commandButton value="Verificar" update="msgs" actionListener="#{calendarioBean.click}" icon="ui-icon-circle-zoomin" />
+
+                    <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+                        <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                            <h:outputText value="Data escolhida: " />
+                            <h:outputText value="#{calendarioBean.date1}">
+                                <f:convertDateTime pattern="yyyy-MM-dd" />
+                            </h:outputText>
+                        </p:panelGrid>
+                    </p:dialog>
+
+                    <p:commandButton action="#{calendarioBean.listar}" value="Listar os horarios" icon="ui-icon-calculator"/>
+                </center>
+            </p:panel>          
+        </h:form>
+    </h:body>
+</html>
+

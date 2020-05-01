@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panel>
+                
+                <p:tabMenu id="tabMenu">
+                    <p:menuitem action="UsuarioMenu" icon="ui-icon-arrowthick-1-w"/>
+                    <p:menuitem value="Página inicial do administrador" action="InicialAdministrador" icon="ui-icon-gear"/>
+                    <p:menuitem value="Menu do Paciente" action="PacienteMenu" icon="ui-icon-person"/>
+                    <p:menuitem value="Menu do Medico" action="MedicoMenu" icon="ui-icon-plusthick"/>
+                    <p:menuitem value="Menu do Usuário" action="UsuarioMenu" icon="ui-icon-clipboard"/>
+                    <p:menuitem value="Logout" action="index" style="margin-right:10px" icon="ui-icon-power"/>
+                </p:tabMenu>     
+
+                <br/>
+                <p:breadCrumb>
+                    <p:menuitem value="Administrador" />
+                    <p:menuitem value="Menu do Usuário" />      
+                    <p:menuitem value="Cadastrar novo usuário" />  
+                </p:breadCrumb>
+                <br/>               
+                
+                <h:panelGrid id="loginpanel" columns="2">
+                    <h:outputText value="Digite o nome completo do novo Administrador: "/>
+                    <p:inputText id="nome" value="#{cub.adm.nome}"/>
+                   
+                    <h:outputText value="Digite o CPF do Administrador novo"/>
+                    <p:inputText id="cpf" value="#{cub.adm.cpf}"/>                    
+                   
+                    <h:outputText value="Digite um Login"/>
+                    <p:inputText id="login" value="#{cub.adm.login}"/>
+                  
+                    <h:outputText value="Digite uma Senha"/>
+                    <h:inputSecret id="senha" value="#{cub.adm.senha}"/>                                                     
+                </h:panelGrid>
+                
+                <p:commandButton icon="ui-icon-check" value="Cadastrar" action="#{cub.cadastrar}"/>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+

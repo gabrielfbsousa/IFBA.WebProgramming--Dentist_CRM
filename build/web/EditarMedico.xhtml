@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panel>
+                
+                 <p:tabMenu id="tabMenu">
+                    <p:menuitem action="MedicoMenu" icon="ui-icon-arrowthick-1-w"/>
+                    <p:menuitem value="Página inicial do administrador" action="InicialAdministrador" icon="ui-icon-gear"/>
+                    <p:menuitem value="Menu do Paciente" action="PacienteMenu" icon="ui-icon-person"/>
+                    <p:menuitem value="Menu do Medico" action="MedicoMenu" icon="ui-icon-plusthick"/>
+                    <p:menuitem value="Menu do Usuário" action="UsuarioMenu" icon="ui-icon-clipboard"/>
+                    <p:menuitem value="Logout" action="index" style="margin-right:10px" icon="ui-icon-power"/>
+                </p:tabMenu>     
+
+                <br/>
+                <p:breadCrumb>
+                    <p:menuitem value="Administrador" />
+                    <p:menuitem value="Menu do Médico" />    
+                    <p:menuitem value="Busca via CRM" />  
+                </p:breadCrumb>
+                <br/>               
+                
+             <h:panelGrid id="EditarMedico" columns="2">
+                 <h:outputText value="Digite a CRM do Médico desejado"/>
+                 <p:inputText id="id" value="#{medicoBean.med.crm}"/>
+                 <p:commandButton icon="ui-icon-circle-zoomin" value="Buscar" action="#{medicoBean.procurar}"/>                
+             </h:panelGrid>
+                
+             </p:panel>
+        </h:form>
+    </h:body>
+</html>
+

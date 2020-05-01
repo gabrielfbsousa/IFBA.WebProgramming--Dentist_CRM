@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+       <h:form>
+            <p:panel header="Histórico de consultas do Paciente" style="width : 360 px">
+                <h:panelGrid id="loginpanel" columns="2">
+                    
+                    
+                    <p:dataTable var="his" value="#{calendarioBean.consultas}">
+
+                        <p:column headerText="Data">
+                            <h:outputText value="#{his.dia}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Hora">
+                            <h:outputText value="#{his.hora}"/>
+                        </p:column>
+
+                        <p:column headerText="Paciente">
+                            <h:outputText value="#{his.cpfpaciente}"/>
+                        </p:column>
+
+                        <p:column headerText="Médico">
+                            <h:outputText value="#{his.nomemedico}"/>
+                        </p:column>
+
+                        <p:column headerText="Descricao">
+                            <h:outputText value="#{his.descricao}"/>
+                        </p:column>
+
+                        <p:column headerText="Anexo">
+                            <h:outputText value=" "/>
+                        </p:column>
+
+                    </p:dataTable>
+
+                    <br/>
+                    <br/>
+                    <p:commandButton action="InicialAdministrador" value="Voltar à tela inicial de administrador"/>
+                    <p:commandButton action="index" value="Voltar à tela inicial"/>
+                    <p:commandButton action="AcoesPaciente" value="voltar"/>
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+

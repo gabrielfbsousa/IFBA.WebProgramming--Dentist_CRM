@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+            <p:tabMenu id="tabMenu">
+                <p:menuitem action="ConsultaCPF" icon="ui-icon-arrowthick-1-w"/>
+                <p:menuitem value="Buscar Consultas por CPF" action="ConsultaCPF" icon="ui-icon-person"/>
+                <p:menuitem value="Buscar Consultas por Data" action="ConsultaData" icon="ui-icon-folder-open"/>
+                <p:menuitem value="Ver Agenda de Consultas" action="AgendaMedico" icon="ui-icon-note"/>
+                <p:menuitem value="Logout" action="index" style="margin-right:10px" icon="ui-icon-power"/>
+            </p:tabMenu> 
+
+            <br/>
+            <p:breadCrumb>
+                <p:menuitem value="Médico" />
+                <p:menuitem value="Buscar por CPF" />   
+                <p:menuitem value="Resultado da busca por CPF" /> 
+            </p:breadCrumb>
+            <br/>
+
+            <p:dataGrid var="consulta" value="#{pb.consultas}" columns="3"
+                        rows="12" paginator="true" id="cars"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="6,12,16">
+
+                <f:facet name="header">
+                    Consultas do Paciente Selecionado
+                </f:facet>
+
+                <p:panel header="#{consulta.cpfpaciente}" style="text-align:center">
+                    <h:panelGrid columns="1" style="width:100%">
+                        <h:outputText value="#{consulta.dia}" />
+                        <h:outputText value="#{consulta.hora}" />
+                        <br/>
+                        <h:outputText value="Marcado Para o paciente: " />
+                        <h:outputText value="#{consulta.cpfpaciente}" />
+                        <br/>
+
+                        <p:commandLink update=":form:detalhesConsulta" oncomplete="PF('detalhesConsulta').show()" title="Detalhes desta consulta">
+                            <h:outputText styleClass="ui-icon ui-icon-circle-zoomin" style="margin:0 auto;" />
+                            <f:setPropertyActionListener value="#{consulta}" target="#{pb.consulta}" />
+                        </p:commandLink>                                              
+                    </h:panelGrid>
+                </p:panel>
+
+            </p:dataGrid>
+
+            <p:dialog header="Informação da data selecionada: " widgetVar="detalhesConsulta" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:outputPanel id="detalhesConsulta" style="text-align:center;">
+                    <p:panelGrid  columns="2" rendered="#{not empty pb.consulta}" columnClasses="label,value">
+                        <f:facet name="Consulta: "/>
+
+                        <h:outputText value="Codigo da Consulta: " />
+                        <h:outputText value="#{pb.consulta.cd_consulta}" />
+
+                        <h:outputText value="CPF do Paciente: " />
+                        <h:outputText value="#{pb.consulta.cpfpaciente}" />
+
+                        <h:outputText value="Descrição: " />
+                        <p:inputTextarea rows="6" cols="33" value="#{pb.consulta.descricao}"/>
+
+                        <h:outputText value="Nome do Médico: " />
+                        <h:outputText value="#{pb.consulta.nomemedico}" />                         
+
+                    </p:panelGrid>
+                    <p:commandButton value="Salvar Edição" icon="ui-icon-disk" action="#{pb.updateConsulta}"/>
+                    <p:commandButton value="Adicionar Imagem" type="button" icon="ui-icon-image" />
+                </p:outputPanel>
+            </p:dialog>
+
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+       <h:form id="ConsultaCpf">
+            <p:growl id="msg" showDetail="true" life="3000"/>
+            <p:panel>
+                
+                <p:tabMenu id="tabMenu">
+                    <p:menuitem action="UsuarioMenu" icon="ui-icon-arrowthick-1-w"/>
+                    <p:menuitem value="Página inicial do administrador" action="InicialAdministrador" icon="ui-icon-gear"/>
+                    <p:menuitem value="Menu do Paciente" action="PacienteMenu" icon="ui-icon-person"/>
+                    <p:menuitem value="Menu do Medico" action="MedicoMenu" icon="ui-icon-plusthick"/>
+                    <p:menuitem value="Menu do Usuário" action="UsuarioMenu" icon="ui-icon-clipboard"/>
+                    <p:menuitem value="Logout" action="index" style="margin-right:10px" icon="ui-icon-power"/>
+                </p:tabMenu>     
+
+                <br/>
+                <p:breadCrumb>
+                    <p:menuitem value="Administrador" />
+                    <p:menuitem value="Menu do Usuário" />      
+                    <p:menuitem value="Buscar usuário via CPF" />  
+                </p:breadCrumb>
+                <br/>         
+                
+                <h:panelGrid id="loginpanel" columns="2">
+                    <h:outputText value="Digite ao lado o CPF do Usuario:"/>
+                    <p:inputText id="cpf" value="#{cub.adm.cpf}" />
+                    
+                    
+                </h:panelGrid>
+                
+                <p:spacer> </p:spacer>
+                <p:commandButton icon="ui-icon-circle-zoomin" action="#{cub.procurar}" value="Buscar"/>                
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+

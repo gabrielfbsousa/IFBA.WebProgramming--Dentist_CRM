@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panel>
+                
+                <p:tabMenu id="tabMenu">
+                        <p:menuitem action="AcoesPaciente" icon="ui-icon-arrowthick-1-w"/>
+                        <p:menuitem value="Página inicial do administrador" action="InicialAdministrador" icon="ui-icon-gear"/>
+                        <p:menuitem value="Menu do Paciente" action="PacienteMenu" icon="ui-icon-person"/>
+                        <p:menuitem value="Menu do Medico" action="MedicoMenu" icon="ui-icon-plusthick"/>
+                        <p:menuitem value="Menu do Usuário" action="UsuarioMenu" icon="ui-icon-clipboard"/>
+                        <p:menuitem value="Logout" action="index" style="margin-right:10px" icon="ui-icon-power"/>
+                    </p:tabMenu>     
+
+                    <br/>
+                    <p:breadCrumb>
+                        <p:menuitem value="Administrador" />
+                        <p:menuitem value="Menu do Paciente" />      
+                        <p:menuitem value="Buscar Paciente via CPF" />  
+                        <p:menuitem value="Ações do Paciente" />  
+                        <p:menuitem value="Lista do histórico do paciente" />  
+                    </p:breadCrumb>
+                    <br/>       
+                
+                
+                <h:panelGrid id="loginpanel" columns="2">
+                    <p:dataTable var="his" value="#{pb.consultas}">
+
+                        <p:column headerText="Data">
+                            <h:outputText value="#{his.dia}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Hora">
+                            <h:outputText value="#{his.hora}"/>
+                        </p:column>
+
+                        <p:column headerText="Paciente">
+                            <h:outputText value="#{his.cpfpaciente}"/>
+                        </p:column>
+
+                        <p:column headerText="Médico">
+                            <h:outputText value="#{his.nomemedico}"/>
+                        </p:column>
+
+                        <p:column headerText="Descricao">
+                            <h:outputText value="#{his.descricao}"/>
+                        </p:column>
+
+                        <p:column headerText="Anexo">
+                            <h:outputText value=" "/>
+                        </p:column>
+                    </p:dataTable>                    
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form style="width:1000px;">
+            <p:growl id="msgs" showDetail="true" />
+            <p:panel>
+            
+                
+                <p:tabMenu id="tabMenu">
+                    <p:menuitem action="InicialMedico" icon="ui-icon-arrowthick-1-w"/>
+                    <p:menuitem value="Buscar Consultas por CPF" action="ConsultaCPF" icon="ui-icon-person"/>
+                    <p:menuitem value="Buscar Consultas por Data" action="ConsultaData" icon="ui-icon-folder-open"/>
+                    <p:menuitem value="Ver Agenda de Consultas" action="AgendaMedico" icon="ui-icon-note"/>
+                    <p:menuitem value="Logout" action="index" style="margin-right:10px" icon="ui-icon-power"/>
+                </p:tabMenu> 
+
+                <br/>
+                <p:breadCrumb>
+                    <p:menuitem value="Médico" />
+                    <p:menuitem value="Buscar por Data" />               
+                </p:breadCrumb>
+                <br/>
+
+
+                <center>
+                    <h:outputText value="Selecione a data desejada, e confirme-a: "/>
+                    <h:panelGrid columns="2" cellpadding="5">                        
+                        <p:calendar id="inline" value="#{lb.date1}" mode="inline" />
+                    </h:panelGrid>                    
+
+                    <p:commandButton action="#{lb.listarMedico}" value="Listar os horarios" icon="ui-icon-calculator"/>
+                </center>
+       
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+

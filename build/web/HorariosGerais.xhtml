@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+            <p:panel>
+
+                <p:tabMenu id="tabMenu">
+                    <p:menuitem action="EscalaMedico" icon="ui-icon-arrowthick-1-w"/>
+                    <p:menuitem value="Página inicial do administrador" action="InicialAdministrador" icon="ui-icon-gear"/>
+                    <p:menuitem value="Menu do Paciente" action="PacienteMenu" icon="ui-icon-person"/>
+                    <p:menuitem value="Menu do Medico" action="MedicoMenu" icon="ui-icon-plusthick"/>
+                    <p:menuitem value="Menu do Usuário" action="UsuarioMenu" icon="ui-icon-clipboard"/>
+                    <p:menuitem value="Logout" action="index" style="margin-right:10px" icon="ui-icon-power"/>
+                </p:tabMenu>     
+
+                <br/>
+                <p:breadCrumb>
+                    <p:menuitem value="Administrador" />
+                    <p:menuitem value="Menu do Paciente" />      
+                    <p:menuitem value="Buscar Paciente via CPF" />  
+                    <p:menuitem value="Ações do Paciente" />  
+                    <p:menuitem value="Agendamento de Consultas" />  
+                    <p:menuitem value="Selecionar uma data" />  
+                    <p:menuitem value="Escolha da consulta" />  
+                </p:breadCrumb>
+                <br/>  
+
+                <p:dataGrid var="consulta" value="#{calendarioBean.consultas}" columns="3"
+                            rows="12" paginator="true" id="cars"
+                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="6,12,16">
+
+                    <f:facet name="header">
+                        Datas Disponíveis
+                    </f:facet>
+
+                    <p:panel header="#{consulta.cpfpaciente}" style="text-align:center">
+                        <h:panelGrid columns="1" style="width:100%">
+                            <h:outputText value="#{consulta.dia}" />
+                            <h:outputText value="#{consulta.hora}" />
+                            <br/>
+                            <h:outputText value="Marcado Para o paciente: " />
+                            <h:outputText value="#{consulta.cpfpaciente}" />
+                            <br/>
+
+                            <p:commandLink update=":form:detalhesConsulta" oncomplete="PF('detalhesConsulta').show()" title="Detalhes desta consulta">
+                                <h:outputText styleClass="ui-icon ui-icon-circle-zoomin" style="margin:0 auto;" />
+                                <f:setPropertyActionListener value="#{consulta}" target="#{pb.consulta}" />
+                            </p:commandLink>                                              
+                        </h:panelGrid>
+                    </p:panel>
+
+                </p:dataGrid>
+
+                <p:dialog header="Informação da data selecionada: " widgetVar="detalhesConsulta" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                    <p:outputPanel id="detalhesConsulta" style="text-align:center;">
+                        <p:panelGrid  columns="2" rendered="#{not empty pb.consulta}" columnClasses="label,value">
+                            <f:facet name="Horário: "/>
+
+                            <h:outputText value="Codigo da Consulta: " />
+                            <h:outputText value="#{pb.consulta.cd_consulta}" />
+
+                            <h:outputText value="CPF do Paciente: " />
+                            <h:outputText value="#{pb.consulta.cpfpaciente}" />
+
+                            <h:outputText value="Nome do Médico: " />
+                            <h:outputText value="#{pb.consulta.nomemedico}" />   
+
+                            <h:outputText value="Descrição: " />
+                            <h:outputText value="#{pb.consulta.descricao}"/>
+                        </p:panelGrid>                        
+                        <p:commandButton value="Escolher esse horário para consulta" icon="ui-icon-check" action="#{pb.cadastrarConsulta}"/>
+                        <p:commandButton value="Cancelar consulta já cadastrada" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-trash" />
+                    </p:outputPanel>
+                </p:dialog>
+
+
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+

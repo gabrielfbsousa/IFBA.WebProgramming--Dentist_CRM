@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panel>
+
+                <p:tabMenu id="tabMenu">
+                    <p:menuitem action="AcoesPaciente" icon="ui-icon-arrowthick-1-w"/>
+                    <p:menuitem value="Página inicial do administrador" action="InicialAdministrador" icon="ui-icon-gear"/>
+                    <p:menuitem value="Menu do Paciente" action="PacienteMenu" icon="ui-icon-person"/>
+                    <p:menuitem value="Menu do Medico" action="MedicoMenu" icon="ui-icon-plusthick"/>
+                    <p:menuitem value="Menu do Usuário" action="UsuarioMenu" icon="ui-icon-clipboard"/>
+                    <p:menuitem value="Logout" action="index" style="margin-right:10px" icon="ui-icon-power"/>
+                </p:tabMenu>     
+
+                <br/>
+                <p:breadCrumb>
+                    <p:menuitem value="Administrador" />
+                    <p:menuitem value="Menu do Paciente" />      
+                    <p:menuitem value="Buscar Paciente via CPF" />  
+                    <p:menuitem value="Ações do Paciente" />  
+                    <p:menuitem value="Agendamento de Consultas" />  
+                </p:breadCrumb>
+                <br/>  
+
+                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">                         
+                    <h:outputText value="Escolha a especialidade desejada: " />
+                    <p:selectOneMenu id="grid" value="#{medicoBean.espec_selecionada}">
+                        <f:selectItems value="#{medicoBean.especialidades}" var="espec" itemLabel="#{espec}" itemValue="#{espec}" />
+                    </p:selectOneMenu>
+                </h:panelGrid>   
+
+                <br/>
+                <p:commandButton icon="ui-icon-contact" value="Selecionar por Médico" action="#{medicoBean.listarMedico}"/>
+                <p:commandButton icon="ui-icon-calendar" value="Selecionar por Data"   action="EscalaMedico"/>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+

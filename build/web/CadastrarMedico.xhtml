@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panel>
+                 <p:tabMenu id="tabMenu">
+                    <p:menuitem action="MedicoMenu" icon="ui-icon-arrowthick-1-w"/>
+                    <p:menuitem value="Página inicial do administrador" action="InicialAdministrador" icon="ui-icon-gear"/>
+                    <p:menuitem value="Menu do Paciente" action="PacienteMenu" icon="ui-icon-person"/>
+                    <p:menuitem value="Menu do Medico" action="MedicoMenu" icon="ui-icon-plusthick"/>
+                    <p:menuitem value="Menu do Usuário" action="UsuarioMenu" icon="ui-icon-clipboard"/>
+                    <p:menuitem value="Logout" action="index" style="margin-right:10px" icon="ui-icon-power"/>
+                </p:tabMenu>     
+
+                <br/>
+                <p:breadCrumb>
+                    <p:menuitem value="Administrador" />
+                    <p:menuitem value="Menu do Médico" />      
+                    <p:menuitem value="Cadastrar Médico" />  
+                </p:breadCrumb>
+                <br/>               
+                
+                <h:panelGrid id="CadastroMedico" columns="2">
+
+                    <h:outputText value="Digite o nome do novo médico: "/>
+                    <p:inputText id="name" value="#{medicoBean.med.nome}" />  
+                    <h:outputText value="Digite o CRM do médico"/>
+                    <p:inputText id="crm" value="#{medicoBean.med.crm}"/>
+                    <h:outputText value="Digite um usuário para o médico"/>
+                    <p:inputText id="usuariomed" value="#{medicoBean.med.login}"/>
+                    <h:outputText value="Digite uma senha para o médico"/>
+                    <h:inputSecret id="senhamed" value="#{medicoBean.med.senha}"/>
+                    <h:outputText value="Digite o e-mail do médico"/>
+                    <p:inputText id="email" value="#{medicoBean.med.email}"/>
+                    <p:outputLabel for="telefone" value="Digite o telefone do médico" />
+                    <p:inputMask id="telefone" value="#{medicoBean.med.telefone}" mask="(99) 9999-9999"/>
+
+
+                    <h:form>
+                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">                            
+                              
+                            <h:outputText value="Especialidades: " />
+                            <p:selectManyCheckbox id="grid" value="#{medicoBean.selecionados}" layout="grid" columns="3">
+                                <f:selectItems value="#{medicoBean.especialidades}" var="especialidades" itemLabel="#{especialidades}" itemValue="#{especialidades}" />
+                            </p:selectManyCheckbox>
+                        </h:panelGrid>
+
+                        <p:commandButton value="Confirmar especialidades" update="display" oncomplete="PF('dlg').show()" icon="ui-icon-circle-zoomin"/>
+
+                        <p:dialog header="Especialidades selecionadas" modal="true" showEffect="clip" widgetVar="dlg" resizable="false">
+                            <p:outputPanel id="display">
+                                <p:dataList value="#{medicoBean.selecionados}" var="especialidades">
+                                    #{especialidades}
+                                </p:dataList>
+                            </p:outputPanel>
+                        </p:dialog>
+                    </h:form>
+                    <br/>
+                    <br/>
+                    <p:commandButton icon="ui-icon-check" value="Cadastrar" action="#{medicoBean.cadastrar}"/><br/>                   
+                    
+
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+

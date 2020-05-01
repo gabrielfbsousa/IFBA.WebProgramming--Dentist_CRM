@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>  
+            <div id="container" style="width:1200px">
+                <p:panel>
+
+                    <p:tabMenu id="tabMenu">
+                        <p:menuitem action="ConsultarPaciente" icon="ui-icon-arrowthick-1-w"/>
+                        <p:menuitem value="Página inicial do administrador" action="InicialAdministrador" icon="ui-icon-gear"/>
+                        <p:menuitem value="Menu do Paciente" action="PacienteMenu" icon="ui-icon-person"/>
+                        <p:menuitem value="Menu do Medico" action="MedicoMenu" icon="ui-icon-plusthick"/>
+                        <p:menuitem value="Menu do Usuário" action="UsuarioMenu" icon="ui-icon-clipboard"/>
+                        <p:menuitem value="Logout" action="index" style="margin-right:10px" icon="ui-icon-power"/>
+                    </p:tabMenu>     
+
+                    <br/>
+                    <p:breadCrumb>
+                        <p:menuitem value="Administrador" />
+                        <p:menuitem value="Menu do Paciente" />      
+                        <p:menuitem value="Buscar Paciente via CPF" />  
+                        <p:menuitem value="Ações do Paciente" />  
+                    </p:breadCrumb>
+                    <br/>               
+
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            <p:graphicImage name="demo/images/misc/kobe.png" />
+                        </f:facet>
+
+                        <h:outputText value="Nome: " />
+                        <h:outputText value="#{pb.pac.nome}" />
+
+                        <h:outputText value="Telefone" />
+                        <h:outputText value="#{pb.pac.telefone}" />
+
+                        <h:outputText value="E-mail:" />
+                        <h:outputText value="#{pb.pac.email}" />
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton icon="ui-icon-grip-solid-horizontal" value="Listar Histórico de Consultas do Paciente" action="#{pb.historico}"/>
+                    <p:commandButton icon="ui-icon-pencil" value="Editar dados do Paciente" action="EditarDados"/>
+                    <p:commandButton icon="ui-icon-note" value="Agendar nova consulta para o paciente" action="AgendarConsulta"/> 
+                </p:panel>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+

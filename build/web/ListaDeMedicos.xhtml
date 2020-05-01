@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <div id="container" style="width:1200px">
+            <h:form>
+                <p:panel>
+                    
+                    <p:tabMenu id="tabMenu">
+                        <p:menuitem action="AgendarConsulta" icon="ui-icon-arrowthick-1-w"/>
+                        <p:menuitem value="Página inicial do administrador" action="InicialAdministrador" icon="ui-icon-gear"/>
+                        <p:menuitem value="Menu do Paciente" action="PacienteMenu" icon="ui-icon-person"/>
+                        <p:menuitem value="Menu do Medico" action="MedicoMenu" icon="ui-icon-plusthick"/>
+                        <p:menuitem value="Menu do Usuário" action="UsuarioMenu" icon="ui-icon-clipboard"/>
+                        <p:menuitem value="Logout" action="index" style="margin-right:10px" icon="ui-icon-power"/>
+                    </p:tabMenu>     
+
+                    <br/>
+                    <p:breadCrumb>
+                        <p:menuitem value="Administrador" />
+                        <p:menuitem value="Menu do Paciente" />      
+                        <p:menuitem value="Buscar Paciente via CPF" />  
+                        <p:menuitem value="Ações do Paciente" />  
+                        <p:menuitem value="Agendamento de Consultas" />  
+                        <p:menuitem value="Selecionar médico" />  
+                    </p:breadCrumb>
+                    <br/>  
+
+                    <h:panelGrid id="loginpanel" columns="2">                        
+                        <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">                            
+
+                            <h:outputText value="Escolha o médico desejado: " />
+                            <p:selectOneMenu id="valor" value="#{medicoBean.nome_medico}" required="true">
+                                <f:selectItems value="#{medicoBean.lista_de_medicos}" var="espec" itemLabel="#{espec}" itemValue="#{espec}" />
+                            </p:selectOneMenu>
+                            
+                        </h:panelGrid>
+                        <br/>
+
+                        <p:commandButton value="Confirmar" update="display" oncomplete="PF('dlg').show()" icon="ui-icon-check" />
+
+                        <p:dialog header="Médico selecionado" modal="true" showEffect="bounce" widgetVar="dlg" resizable="false">
+                            <p:panelGrid columns="2" id="display" columnClasses="label,value">
+                                <h:outputText value="Nome do médico" />
+                                <h:outputText value="#{medicoBean.nome_medico}" />
+                            </p:panelGrid>
+                        </p:dialog>
+
+                        
+                    </h:panelGrid>
+                <br/>
+                <p:commandButton icon="ui-icon-grip-solid-horizontal" value="Buscar Escala" action="#{medicoBean.listar}"/><br/>
+                </p:panel>
+            </h:form>
+        </div>
+    </h:body>
+</html>
+

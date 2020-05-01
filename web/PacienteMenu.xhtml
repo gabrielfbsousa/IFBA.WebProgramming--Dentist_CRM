@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div id="container" style="width:1200px">
+                <p:panel>
+
+                    <p:tabMenu id="tabMenu">
+                        <p:menuitem value="Página inicial do administrador" action="InicialAdministrador" icon="ui-icon-gear"/>
+                        <p:menuitem value="Menu do Paciente" action="PacienteMenu" icon="ui-icon-person"/>
+                        <p:menuitem value="Menu do Medico" action="MedicoMenu" icon="ui-icon-plusthick"/>
+                        <p:menuitem value="Menu do Usuário" action="UsuarioMenu" icon="ui-icon-clipboard"/>
+                        <p:menuitem value="Logout" action="index" style="margin-right:10px" icon="ui-icon-power"/>
+                    </p:tabMenu>     
+
+                    <br/>
+                    <p:breadCrumb>
+                        <p:menuitem value="Administrador" />
+                        <p:menuitem value="Menu do Paciente" />               
+                    </p:breadCrumb>
+                    <br/>
+
+                    <p:fieldset legend="Menu do Paciente" style="margin-bottom:20px">
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
+                            <h:outputText
+                                value="Este é o menu do Paciente. Escolha um dos botões abaixo para criar um novo paciente ou ver as demais operações
+                                relacionadas a um paciente já existente (como edição de dados do paciente, agendamento e listagem de consultas.
+                                Você também pode escolher as opções de navegação do menu acima." />
+                        </h:panelGrid>
+                    </p:fieldset>
+
+                    <p:commandButton icon="ui-icon-circle-plus" value="Cadastrar novo Paciente" action="CadastroPaciente"/>                    
+                    <p:commandButton icon="ui-icon-grip-dotted-horizontal" value="Operações do Paciente" action="ConsultarPaciente"/>  
+
+                </p:panel>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+
